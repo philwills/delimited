@@ -53,6 +53,11 @@ this \ is "awkward"""").get should be (
       it("should default to writing DateTime as ISO8601") {
         FieldWriter.write(new DateTime().withDate(2010,12,31).withTime(3,4,5,6)).get should be ("2010-12-31T03:04:05.006Z")
       }
+
+      it("should to write DateTime as Redshift compatible Timestamp if specified") {
+        import RedshiftTimestampFormat._
+        FieldWriter.write(new DateTime().withDate(2010,12,31).withTime(3,4,5,6)).get should be ("12.31.2010 03:04:05.006")
+      }
     }
   }
 }
