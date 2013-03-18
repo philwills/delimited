@@ -2,6 +2,7 @@ package com.github.philwills.delimited
 
 import org.scalatest.FunSpec
 import org.scalatest.matchers._
+import org.joda.time.DateTime
 
 class FieldWriterTest extends FunSpec with ShouldMatchers {
   describe("Field Writer") {
@@ -45,6 +46,12 @@ this \ is "awkward"""").get should be (
     describe("Number writing") {
       it("should write integral numbers out simply") {
         FieldWriter.write(5).get should be ("5")
+      }
+    }
+
+    describe("DateTime writing") {
+      it("should default to writing DateTime as ISO8601") {
+        FieldWriter.write(new DateTime().withDate(2010,12,31).withTime(3,4,5,6)).get should be ("2010-12-31T03:04:05.006Z")
       }
     }
   }
