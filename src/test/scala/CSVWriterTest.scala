@@ -10,8 +10,8 @@ class CSVWriterTest extends FunSpec with ShouldMatchers {
         (1,"two",3),
         (4,"five",6)
       )) should be (
-"""1,two,3
-4,five,6""")
+"""1,"two",3
+4,"five",6""")
     }
   }
 }

@@ -8,10 +8,9 @@ class FieldWriterTest extends FunSpec with ShouldMatchers {
   describe("Field Writer") {
     describe("String field writing") {
       it("writes simple strings as is") {
-        FieldWriter.write("foo").get should be ("foo")
+        FieldWriter.write("foo").get should be ("\"foo\"")
       }
       it("can escape as per rfc4180") {
-        import RFC4180._
         FieldWriter.write("""
 This is a
 "mess"
@@ -31,7 +30,7 @@ this \ is "awkward"""").get should be (
 
     describe("Option writing") {
       it("should write out the contents of some option") {
-        FieldWriter.write(Some("foo")).get should be ("foo")
+        FieldWriter.write(Some(42)).get should be ("42")
       }
 
       it("should write nothing where there's nothing to write") {
