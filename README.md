@@ -31,3 +31,19 @@ CSV.string(Seq(
 ```
 
 well that's at least doing more than calling toString on everything.
+
+How about conforming to the peculiarities of Amazon's Redshift service:
+
+```scala
+import com.github.philwills.delimited._
+import RedshiftFormats._
+
+import org.joda.time.DateTime
+
+CSV.string(Seq(
+    (1,"""two or
+maybe "three"
+""", Some(new DateTime(2013, 3, 20, 9, 27, 3))),
+    (4,"five",None)
+   ))
+```

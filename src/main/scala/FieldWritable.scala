@@ -44,3 +44,5 @@ trait RedshiftTimestampFormat {
   }
 }
 
+object RedshiftFormats extends BackslashEscaped with RedshiftTimestampFormat
+
